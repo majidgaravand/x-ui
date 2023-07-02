@@ -17,12 +17,12 @@ xray panel that supports multi-protocol and multi-user
 # Install & Upgrade
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/majidgaravand/x-ui/master/install.sh)
 ```
 
 ## Manual installation & upgrade
 
-1. First download the latest compressed package from https://github.com/vaxilu/x-ui/releases, generally choose `amd64` architecture
+1. First download the latest compressed package from https://github.com/majidgaravand/x-ui/releases, generally choose `amd64` architecture
 2. Then upload the compressed package to the `/root/` directory of the server, and use the `root` user to log in to the server
 
 > If your server cpu architecture is not `amd64`, replace `amd64` in the command with other architectures
@@ -140,4 +140,4 @@ All kinds of white problems see high blood pressure
 
 ## Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/vaxilu/x-ui.svg)](https://starchart.cc/vaxilu/x-ui)
+[![Stargazers over time](https://starchart.cc/majidgaravand/x-ui.svg)](https://starchart.cc/majidgaravand/x-ui)
