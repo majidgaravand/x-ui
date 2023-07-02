@@ -27,7 +27,7 @@ elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
      release="centos"
 else
      echo -e "${red} has not detected the system version, please contact the script author! ${plain}\n" && exit 1
-the fi
+fi
 
 arch=$(arch)
 
@@ -40,45 +40,45 @@ elif [[ $arch == "s390x" ]]; then
 else
      arch="amd64"
      echo -e "Failed to detect architecture for ${red}, use default architecture: ${arch}${plain}"
-the fi
+fi
 
 echo "architecture: ${arch}"
 
 if [ $(getconf WORD_BIT) != '32' ] && [ $(getconf LONG_BIT) != '64' ]; then
      echo "This software does not support 32-bit system (x86), please use 64-bit system (x86_64), if the detection is wrong, please contact the author"
      exit -1
-the fi
+fi
 
 os_version=""
 
 # os version
 if [[ -f /etc/os-release ]]; then
      os_version=$(awk -F'[= ."]' '/VERSION_ID/{print $3}' /etc/os-release)
-the fi
+fi
 if [[ -z "$os_version" && -f /etc/lsb-release ]]; then
      os_version=$(awk -F'[= ."]+' '/DISTRIB_RELEASE/{print $2}' /etc/lsb-release)
-the fi
+fi
 
 if [[ x"${release}" == x"centos" ]]; then
      if [[ ${os_version} -le 6 ]]; then
          echo -e "${red}Please use CentOS 7 or later! ${plain}\n" && exit 1
-     the fi
+     fi
 elif [[ x"${release}" == x"ubuntu" ]]; then
      if [[ ${os_version} -lt 16 ]]; then
          echo -e "${red}Please use Ubuntu 16 or later! ${plain}\n" && exit 1
-     the fi
+     fi
 elif [[ x"${release}" == x"debian" ]]; then
      if [[ ${os_version} -lt 8 ]]; then
          echo -e "${red} Please use Debian 8 or later! ${plain}\n" && exit 1
-     the fi
-the fi
+     fi
+fi
 
 install_base() {
      if [[ x"${release}" == x"centos" ]]; then
          yum install wget curl tar -y
      else
          apt install wget curl tar -y
-     the fi
+     fi
 }
 
 #This function will be called when user installed x-ui out of sercurity
@@ -99,7 +99,7 @@ config_after_install() {
          echo -e "${yellow} panel port setting completed ${plain}"
      else
          echo -e "${red} has been cancelled, all settings are default settings, please modify ${plain} in time"
-     the fi
+     fi
 }
 
 install_x-ui() {
@@ -111,13 +111,13 @@ install_x-ui() {
          if [[ ! -n "$last_version" ]]; then
              echo -e "${red} failed to detect the x-ui version, it may be beyond the Github API limit, please try again later, or manually specify the x-ui version to install ${plain}"
              exit 1
-         the fi
+         fi
          echo -e "Detected the latest version of x-ui: ${last_version}, start the installation"
          wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://github.com/majidgaravand/x-ui/releases/download/$ {last_version}/x-ui-linux-${arch}.tar.gz
          if [[ $? -ne 0 ]]; then
              echo -e "${red} failed to download x-ui, please make sure your server can download Github files ${plain}"
              exit 1
-         the fi
+         fi
      else
          last_version=$1
          url="https://github.com/majidgaravand/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz"
@@ -126,12 +126,12 @@ install_x-ui() {
          if [[ $? -ne 0 ]]; then
              echo -e "${red} failed to download x-ui v$1, please make sure ${plain} exists for this version"
              exit 1
-         the fi
-     the fi
+         fi
+     fi
 
      if [[ -e /usr/local/x-ui/ ]]; then
          rm /usr/local/x-ui/ -rf
-     the fi
+     fi
 
      tar zxvf x-ui-linux-${arch}.tar.gz
      rm x-ui-linux-${arch}.tar.gz -f
